@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>All Blogs</h2>
+
+  {{blogpost.title}}
+  <br>
+  {{blogpost.author}}
+  <br>
+  {{blogpost.content}}
+  <br>
+  {{blogpost.publication_date}}
+  
+  
+  <a href="{% url 'blog_post_list' %}">see all blog</a>
+
+  <form method="POST">
+    {% csrf_token %}
+      {{form.as_p}}
+     <input type="submit" value="submit">  
+   </form>
+{% endblock %}

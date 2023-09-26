@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+{{request.user}}
+  <h2>All Blogs</h2>
+  {% for i in blog_posts%}
+  {{i.author}}
+    {{i.title}}
+    {{i.content}}
+    {{i.publication_date}}
+    
+    <a href="{% url 'view_blog' i.id %}">view blog</a>
+    <a href="{% url 'update_blog_post' i.id %}">update blog</a>
+
+    <a href="{% url 'delete_blog_post' i.id %}">delete blog</a>
+
+    
+  
+  <!-- check permission that user can delete or not it object model level permission    -->
+  <!-- {% if perms.blog.delete_blogpost %}
+  <a href="{% url 'delete_blog_post' i.id %}">delete blog</a>
+  {% endif %} -->
+  
+
+  
+  <!-- check permission that user can delete or not it object model level permission    --> 
+  <!-- {% if request.user.is_superuser %}
+  <a href="{% url 'delete_blog_post' i.id %}">delete blog</a>
+  {% endif %}   -->
+
+
+    <br>
+  {% endfor%}
+  
+  {% if messages %}
+    {% for msg in messages %}
+    {{msg}}
+    {% endfor%}
+    {% endif%}
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="submit">
+  </form>
+
+{% endblock %}
