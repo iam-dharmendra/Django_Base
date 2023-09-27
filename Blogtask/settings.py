@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'userApp',
-    'blog'
+    'blog',
+    'celeryapp'
 ]
 
 AUTH_USER_MODEL='userApp.User'
@@ -125,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -143,3 +144,11 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# CELERY setting
+
+CELERY_BROKER_URL='redis://127.0.0.1:6379/0'
+CELERY_RESULT_BACKEND='redis://127.0.0.1:6379/0'
+CELERY_TIMEZONE = "Asia/Kolkata"
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP=True

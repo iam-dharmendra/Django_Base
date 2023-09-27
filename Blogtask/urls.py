@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/',include('userApp.urls')),
     path('blog/',include('blog.urls')),
+    path('celery/',include('celeryapp.urls'))
 ]
